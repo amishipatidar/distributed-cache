@@ -1,0 +1,51 @@
+DistributedCache
+----------------------------
+- List<CacheNode> nodes
+- DistributionStrategy strategy
+- Database database
+----------------------------
++ get(key)
++ put(key, value)
++ getNode(key)
+
+
+DistributionStrategy (interface)
+----------------------------
++ getNodeIndex(key, totalNodes)
+
+
+ModuloDistributionStrategy
+----------------------------
++ getNodeIndex(...)
+
+
+CacheNode
+----------------------------
+- int capacity
+- Map<K,V> map
+- EvictionPolicy policy
+----------------------------
++ get(key)
++ put(key, value)
+
+
+EvictionPolicy (interface)
+----------------------------
++ keyAccessed(key)
++ evictKey()
+
+
+LRUEvictionPolicy
+----------------------------
+- LinkedHashSet<K> set
+----------------------------
++ keyAccessed(key)
++ evictKey()
+
+
+Database
+----------------------------
+- Map<K,V> storage
+----------------------------
++ get(key)
++ put(key, value)
